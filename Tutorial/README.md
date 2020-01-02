@@ -182,4 +182,125 @@ for letter in final_keywords_list:
         counted[letr] = 1
 ```
 
-Sweet. Our code does what we want it to do so far.
+Sweet. Our code does what we want it to do so far. We have a dictionary that has each word typed and how many times it was repeated
+
+## Lets get to visualization!
+
+Since we have the words counted, why not do some filtering and data visualisation? The way we have the data know allows us to do many things (Sure, the more time you keep this code running, the more words you capture, and the more accurate your analysis can be).
+
+For the sake of this tutorial, I chose to do a bar graph comparing repetative words.
+For this we will use a library called `matplotlib`. It is the most famous library used in Data Science. So lets get to it. First make sure you install it. Instructions (here)[https://matplotlib.org/2.2.4/users/installing.html#linux].
+
+So far, our code looks like this:
+
+```python
+log_file = open("log.txt", "r+")
+
+chars = 0
+lines = 0
+letters = []
+counted = {}
+
+for i in log_file.read():
+    if i == '\n':
+        lines += 1
+    chars += 1
+    letters.append(i)
+
+key_string = "".join(letters)
+word_string = key_string.replace('\n', " ")
+final_keywords_list = word_string.split()
+
+for letter in final_keywords_list:
+    letr = str(letter)
+    if letr in counted:
+        counted[letr] += 1
+    else:
+        counted[letr] = 1
+```
+
+Before we go ahead and draw a bar for each word in our dictionary, lets do some filtering.
+If we run the code for a while, we will end up having A LOT of words captured. We wont really be able to draw a bar for every single word there is. So lets make a new dictionary containing the words that at least have been repeated 3 times.
+
+```python
+new_dict = {}  #making a new empty dictionary
+
+for item in counted:  #looping through the old one
+    if counted[str(item)] >= 3:  #if repeated more than 3 times
+        new_dict[str(item)] = counted[str(item)]  #add to the new dictionary
+``` 
+
+## Amazing, now we can start drawing 🦄
+First we need to import the library we installed:
+
+```python
+import matplotlib.pyplot as plt  #calling plt just makes it more convenient
+```
+
+Now at the bottom of our code, lets start plotting the words:
+
+```python
+plt.title('KEYLOG ANALYSIS', fontsize = 20)  #choosing a title for the graph
+plt.bar(range(len(new_dict)), list(new_dict.values())) 
+plt.xticks(range(len(new_dict)), list(new_dict.keys()))
+
+plt.show()
+```
+
+Lets take a moment to explain that.
+`plt.bar()` method takes many arguments. The default positional arguments are the x-coordinates of the graph (the words indexes), and the y-coordinates of the graph (the actual words).
+
+`plt.xticks()` method is used to label the x-coordinates of the graph. So taking the keys of our dictionary as the second argument will plot each word beneath its bar.
+
+Great. Now we are all set to try this out!
+The final code looks like this:
+
+```python
+import matplotlib.pyplot as plt
+
+log_file = open("log.txt", "r+")
+
+chars = 0
+lines = 0
+letters = []
+counted = {}
+new_dict = {}
+
+for i in log_file.read():
+    if i == '\n':
+        lines += 1
+    chars += 1
+    letters.append(i)
+
+key_string = "".join(letters)
+word_string = key_string.replace('\n', " ")
+final_keywords_list = word_string.split()
+
+for letter in final_keywords_list:
+    letr = str(letter)
+    if letr in counted:
+        counted[letr] += 1
+    else:
+        counted[letr] = 1
+
+for item in counted:
+    if counted[str(item)] >= 3:
+        new_dict[str(item)] = counted[str(item)]
+
+print(lines, "Lines", " || ", chars, "Character", " || ", len(final_keywords_list), "Words")
+print('\n')
+
+plt.title('KEYLOG ANALYSIS', fontsize = 20)
+plt.bar(range(len(new_dict)), list(new_dict.values()))
+plt.xticks(range(len(new_dict)), list(new_dict.keys()))
+
+plt.show()
+```
+
+Now the rest is for you to do. Just run the first keylogger we wrote. Do some work with your keyboard. Once you are done, run this code and see what it tells you!
+Please feel free to share the result in a screenshot below (it can be really funny sometimes 😆).
+Also, feel free to (clone the project on github)[https://github.com/MustafaAnasKH99/Daily-Activity-Analysis] and mess with it.
+
+<a href="https://www.buymeacoffee.com/xERklFa" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
+
+> I am on a lifetime mission to support and contribute to the general knowledge of the web community as much as possible. Some of my writings might sound too silly, or too difficult, but no knowledge is ever useless.If you like my articles, feel free to help me keep writing by getting me coffee :wink: :heart:
