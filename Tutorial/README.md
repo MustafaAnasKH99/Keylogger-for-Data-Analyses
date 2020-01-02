@@ -1,4 +1,4 @@
-# For Beginner - Analyse your own daily activity by building a Python keylogger
+# For Beginners - Analyse your own daily activity by building a Python keylogger
 
 A while ago, I was curious to know more about my own activity on the web. I tried installing my browser search history and do some analysis on that but I didnt like the result considering the effort done to analyze such big data. I wanted to keep it simple. So I thought why not start by capturing every single word my keyboard types and see what I can conclude from there.
 
@@ -189,7 +189,7 @@ Sweet. Our code does what we want it to do so far. We have a dictionary that has
 Since we have the words counted, why not do some filtering and data visualisation? The way we have the data know allows us to do many things (Sure, the more time you keep this code running, the more words you capture, and the more accurate your analysis can be).
 
 For the sake of this tutorial, I chose to do a bar graph comparing repetative words.
-For this we will use a library called `matplotlib`. It is the most famous library used in Data Science. So lets get to it. First make sure you install it. Instructions (here)[https://matplotlib.org/2.2.4/users/installing.html#linux].
+For this we will use a library called `matplotlib`. It is the most famous library used in Data Science. So lets get to it. First make sure you install it. Instructions [here](https://matplotlib.org/2.2.4/users/installing.html#linux).
 
 So far, our code looks like this:
 
@@ -299,7 +299,7 @@ plt.show()
 
 Now the rest is for you to do. Just run the first keylogger we wrote. Do some work with your keyboard. Once you are done, run this code and see what it tells you!
 Please feel free to share the result in a screenshot below (it can be really funny sometimes 😆).
-Also, feel free to (clone the project on github)[https://github.com/MustafaAnasKH99/Daily-Activity-Analysis] and mess with it.
+Also, feel free to [clone the project on github](https://github.com/MustafaAnasKH99/Daily-Activity-Analysis) and mess with it.
 
 <a href="https://www.buymeacoffee.com/xERklFa" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
 
