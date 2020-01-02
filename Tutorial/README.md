@@ -123,3 +123,63 @@ yayy 🦄
 Now run this code, try typing some sentences anywhere, they force close the code.
 You will see a new `log.txt` file appear in the same directory your code is in. You will see the keys nicely formated as words in one line. 
 Now the next step is to read these words and try to analyze them.
+
+As I said before, I wanted to keep it simple. So all I did was to count:
+ - How many characters
+ - How many lines
+ - How many words
+ - how many times each word was repeated.
+
+For the sake of keeping this simple and beginner-friendly, We will make a new python file that will do the reading/analysis work. So lets make a new `readKeys.py` file in the same directory and start working there.
+
+Open `readKeys.py` and type the following:
+
+```python
+log_file = open("log.txt", "r+") #open file in reading mode (r)
+
+chars = 0
+lines = 0
+letters = []
+
+for i in log_file.read():
+    if i == '\n':  # \n means Enter key which is a new line
+        lines += 1
+    chars += 1
+    letters.append(i)
+```
+
+The loop we wrote reads the whole `log.txt` file that we got from the previouse code we wrote and counts how many characters and lines there are, and add the letters into an array. (we kind of re-did what we did in the previous code 😄).
+
+Now what we want to do is to make a new array that has words and not letters.
+The way we do this is by `joining` all the array letters into one string. Then we `split` this string to an array of words everytime we see a `space`
+(_`split` and `join` are helpful methods that Python provide us. Lets see how easy it is to use them_).
+
+```python
+key_string = "".join(letters)
+word_string = key_string.replace('\n', " ")
+final_keywords_list = word_string.split()
+```
+
+This might look too complex but it is really not. Each line here does a step we mentioned before:
+ - Join the letter in one string
+ - replace the Enter spaces with proper spaces
+ - split the string into an array of words
+
+So now. The `final_keywords_list` is an array of words.
+Now we can do the last bit of analysis. Lets count the repetative words!
+
+First we define an empty dictionary called counted. Then we go through the array of words.
+For each word, if it exists in the dictionary, we increase its count. If it does not, we add it.
+
+```python
+counted = {}
+
+for letter in final_keywords_list:
+    letr = str(letter)
+    if letr in counted:
+        counted[letr] += 1
+    else:
+        counted[letr] = 1
+```
+
+Sweet. Our code does what we want it to do so far.
