@@ -29,6 +29,8 @@ at the very top of your `.py` file, lets add this line:
 from pynput.keyboard import Key, Listener
 ```
 
+_To make sure you have pynput installed, run the command `pip install pynput`_
+
 and at the very bottom of the file, lets use the Listener library we imported to call the function we just defined (`on_press`) everytime a key is pressed.
 
 ```python
